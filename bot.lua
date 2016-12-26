@@ -73,7 +73,6 @@ end
       tdcli.deleteMessages(chat_id, {[0] = msg.id_})
     end
 end	
-end
 if msg.content_.text_ == "/setbaner" then
 if msg.reply_to_message_id_ then
 redis:set('banerid',msg.reply_to_message_id_)
