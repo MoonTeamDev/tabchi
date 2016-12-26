@@ -99,7 +99,7 @@ end
 end
 tdcli.sendMessage(msg.chat_id_, 0, 1, '<b>sent to:'..a..' </b>', 1, 'html')
 end
-end
+
 function up()
 tdcli.sendMessage(999999999, 0, 1, '*bot runing at*\n', 1, 'md')
 end
