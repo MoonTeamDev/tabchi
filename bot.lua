@@ -71,8 +71,7 @@ end
     elseif input:match('@') and redis:get('luser:'..msg.chat_id_) then
       --tdcli.deleteMessages(msg.chat_id_, data.message_.text_)
       tdcli.deleteMessages(chat_id, {[0] = msg.id_})
-    end
-end	
+    end	
 if msg.content_.text_ == "/setbaner" then
 if msg.reply_to_message_id_ then
 redis:set('banerid',msg.reply_to_message_id_)
@@ -99,7 +98,7 @@ end
 end
 tdcli.sendMessage(msg.chat_id_, 0, 1, '<b>sent to:'..a..' </b>', 1, 'html')
 end
-
+end
 function up()
 tdcli.sendMessage(999999999, 0, 1, '*bot runing at*\n', 1, 'md')
 end
