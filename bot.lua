@@ -59,6 +59,20 @@ tdcli.sendMessage(msg.chat_id_, 0, 1, '<b>'..text..'</b>', 1, 'html')
 elseif msg.content_.text_ == "PING" then
 tdcli.sendMessage(msg.chat_id_, 0, 1, '<b>PONG</b>', 1, 'html')
 end
+	
+	if input:match('^lock username$') then
+      redis:set('luser:'..msg.chat_id_, true)
+      tdcli.sendText(msg.chat_id_, 0, 0, 1, nil, '_Lock Username Has Been Activated :D_', 1, 'md')
+    elseif input:match('^unlock username$') then
+      redis:del('luser:'..msg.chat_id_)
+      tdcli.sendText(msg.chat_id_, 0, 0, 1, nil, '_Lock Username Has Been Deactivated :D_', 1, 'md')
+    --elseif input:match('unlock username$') and not redis:get('luser:'..msg.chat_id_) then
+    -- tdcli.sendText(msg.chat_id_, 0, 0, 1, nil, '_Lock Username Already Deactivated :D_', 1, 'md')
+    elseif input:match('@') and redis:get('luser:'..msg.chat_id_) then
+      --tdcli.deleteMessages(msg.chat_id_, data.message_.text_)
+      tdcli.deleteMessages(chat_id, {[0] = msg.id_})
+    end
+end	
 if msg.content_.text_ == "/setbaner" then
 if msg.reply_to_message_id_ then
 redis:set('banerid',msg.reply_to_message_id_)
