@@ -59,6 +59,10 @@ tdcli.sendMessage(msg.chat_id_, 0, 1, '<b>'..text..'</b>', 1, 'html')
 elseif msg.content_.text_ == "PING" then
 tdcli.sendMessage(msg.chat_id_, 0, 1, '<b>PONG</b>', 1, 'html')
 end
+if msg.content_.text == "/pin" and msg.content_.reply_to_message_id_ ~= 0 then
+tdcli.pinChannelMessage(msg.content_.chat_id_, msg.content_.reply_to_message_id_, 1)
+tdcli.sendMessage(msg.chat_id_, 0, 1, '<i>پیام پین شد</i>', 1, 'html')
+end
 if msg.content_.text_ == "/id" then
 tdcli.sendMessage(msg.chat_id_, 0, 1, '_User ID:_ *'..msg.sender_user_id_..'*\n_Chat ID:_ *'..msg.chat_id_..'*', 1, 'md')
 
